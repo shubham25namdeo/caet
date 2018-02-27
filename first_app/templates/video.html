@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Full Screen Background Video</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700">
+    <link rel="stylesheet" href="{% static 'first_app/css/style_shubh.css' %}">
+
+	<!-- Custom Styles -->
+	<link href="{% static 'first_app/css/style2.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<video autoplay id="bgvid" loop>
+<source src="{% static 'first_app/videos/demo.mp4' %}" type="video/mp4">
+</video>
+
+<div id="shubh">
+<h1>Nikon Video</h1>
+<p>Wildlife traditionally refers to undomesticated animal species, but has come to include all plants, fungi, and other organisms that grow or live wild in an area without being introduced by humans.
+</p>
+<p>Wildlife can be found in all ecosystems. Deserts, forests, rain forests, plains, grasslands, and other areas including the most developed urban sites, all have distinct forms of wildlife. While the term in popular culture usually refers to animals that are untouched by human factors, most scientists agree that much wildlife is affected by human activities.</p>
+<button>Pause</button>
+</div>
+<script>
+var vid = document.getElementById("bgvid");
+var pauseButton = document.querySelector("#shubh button");
+
+function vidFade() {
+  vid.classList.add("stopfade");
+}
+
+vid.addEventListener('ended', function()
+{
+// only functional if "loop" is removed 
+vid.pause();
+// to capture IE10
+vidFade();
+}); 
+
+
+pauseButton.addEventListener("click", function() {
+  vid.classList.toggle("stopfade");
+  if (vid.paused) {
+    vid.play();
+    pauseButton.innerHTML = "Pause";
+  } else {
+    vid.pause();
+    pauseButton.innerHTML = "Play";
+  }
+})
+
+
+</script>
+
+</body>
+</html>

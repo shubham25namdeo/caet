@@ -1,0 +1,124 @@
+{% load static %}
+<!Doctype html>
+<head>
+    <title>CAET</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'first_app/css/style_bar.css' %}">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700">
+    <link rel="stylesheet" href="{% static 'first_app/css/style_shubh.css' %}">
+
+</head>
+
+<body>
+
+<div id="dock-container">
+    <div id="dock">
+        <ul>
+            <li><span>Home</span><a href="/"><img src="{% static 'first_app/images/icons/home.png' %}"/></a></li>
+            <li><span>About</span><a href="/team/"><img src="{% static 'first_app/images/icons/about.png' %}"/></a></li>
+            <li><span>Add Consultant</span><a href="/actant/"><img
+                    src="{% static 'first_app/images/icons/actant.png' %}"/></a></li>
+            <li><span>View Consultant</span><a href="/vctant/"><img
+                    src="{% static 'first_app/images/icons/vctant.ico' %}"/></a></li>
+            <li><span>View Documents</span><a href="/docx/"><img
+                    src="{% static 'first_app/images/icons/Docs.png' %}"/></a></li>
+            <li><span>View Notes</span><a href="/notes/"><img
+                    src="{% static 'first_app/images/icons/notes.png' %}"/></a>
+            </li>
+            <li><span>Chat Box</span><a href="/chats/"><img src="{% static 'first_app/images/icons/chat.png' %}"/></a>
+            </li>
+            <li><span>Articles</span><a href="/articles/"><img src="{% static 'first_app/images/icons/art.png' %}"/></a>
+            </li>
+            <li><span>Our Team</span><a href="/team/"><img src="{% static 'first_app/images/icons/team.png' %}"/></a>
+            </li>
+            <li><span>Logout</span><a href="/logout/"><img src="{% static 'first_app/images/icons/lout.png' %}"/></a>
+            </li>
+
+        </ul>
+        <div class="base"></div>
+    </div>
+</div>
+
+<video autoplay id="bgvid" loop>
+    <source type="video/mp4" src="{% static 'first_app/videos/demo.mp4' %}">
+</video>
+
+<div id="shubh" style="text-align: center">
+    <img src="http://www.consultadd.com/wp-content/uploads/Final_logo.png" alt="ConsultAdd">
+
+    <h1>ET</h1>
+
+        <div class="base"></div>
+    <button>Pause</button>
+
+</div>
+<div id="shubh" style="text-align: center">
+    <div id="dock">
+        <ul>
+            <li><a href="/accounts/login"><img src="{% static 'first_app/images/icons/login.png' %}"
+                                                        alt="Login"/></a></li>
+            <li><a href="/register/"><img src="{% static 'first_app/images/icons/reg.png' %}"
+                                                        alt="Login"/></a></li>
+        </ul>
+    </div>
+
+        <div class="base"></div>
+
+</div>
+<script>
+    function addPrevClass(e) {
+        var target = e.target;
+        if (target.getAttribute('src')) { // check if it is img
+            var li = target.parentNode.parentNode;
+            var prevLi = li.previousElementSibling;
+            if (prevLi) {
+                prevLi.className = 'prev';
+            }
+
+            target.addEventListener('mouseout', function () {
+                if (prevLi) {
+                    prevLi.removeAttribute('class');
+                }
+            }, false);
+        }
+    }
+    if (window.addEventListener) {
+        document.getElementById('dock').addEventListener('mouseover', addPrevClass, false);
+    }
+
+    // print user-agent string
+    document.getElementById('ua-string').innerHTML = navigator.userAgent;
+
+</script>
+<script>
+    var vid = document.getElementById("bgvid");
+    var pauseButton = document.querySelector("#shubh button");
+
+    function vidFade() {
+        vid.classList.add("stopfade");
+    }
+
+    vid.addEventListener('ended', function () {
+// only functional if "loop" is removed
+        vid.pause();
+// to capture IE10
+        vidFade();
+    });
+
+
+    pauseButton.addEventListener("click", function () {
+        vid.classList.toggle("stopfade");
+        if (vid.paused) {
+            vid.play();
+            pauseButton.innerHTML = "Pause";
+        } else {
+            vid.pause();
+            pauseButton.innerHTML = "Play";
+        }
+    })
+
+
+</script>
+</body>
+</html>
+

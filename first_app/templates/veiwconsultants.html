@@ -1,0 +1,259 @@
+{#{% extends "base.html" %}#}
+{% load static %}
+<html>
+<head>
+
+    <script>
+        $(function () {
+                        var b=$("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("#datepicker").html($("#datepicker").datepicker({dateFormat: 'yy-mm-dd'}));
+        });
+    </script>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'first_app/images/favicons.png' %}"/>
+    <meta content="http://www.thepetedesign.com/demos/tip_cards_demo.html" property="og:url"/>
+    <meta content="http://www.thepetedesign.com/images/tip_cards_image.png" property="og:image"/>
+    <meta name="author" content="Pete R.">
+    <link rel="canonical" href="http://www.thepetedesign.com/demos/tip_cards_demo.html"/>
+    <link href='http://fonts.googleapis.com/css?family=OpenSans:100,300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='{% static "first_app/css/tip_cards.css" %}' rel='stylesheet' type='text/css'>
+    <link href='{% static "first_app/css/style_view_cards_main.css" %}' rel='stylesheet' type='text/css'>
+    <link href='{% static "first_app/css/style_veiw_cards.css" %}' rel='stylesheet' type='text/css'>
+
+    <script type='text/javascript' src="{% static "first_app/js/jquery-1.11.3.js" %}"></script>
+    <script type='text/javascript' src="{% static "first_app/js/jquery.tip_cards.js" %}"></script>
+   <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $(".tips").tip_cards();
+            });
+        });
+
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Welcome {{ user.first_name }}</title>
+    <!-- Compiled and minified CSS -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'first_app/css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'first_app/css/materialize.css' %}">
+    <script type='text/javascript' src='{% static 'first_app/js/materialize.min.js' %}'></script>
+    <script type='text/javascript' src="{% static "first_app/js/materialize.js" %}"></script>
+</head>
+<body style="overflow: auto">
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="/home/"><img src="http://www.consultadd.com/wp-content/uploads/Final_logo.png"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            <li><a style="color: black" href="/home/">Home</a></li>
+            <li><a style="color: black" href="/docx/">View Documents</a></li>
+            <li><a style="color: black" href="/edctant/">Edit Consultant</a></li>
+            <li><a style="color: black" href="/chats/">Chat Box</a></li>
+            <li><a style="color: black" href="/articles/">Articles</a></li>
+            <li><a style="color: black" href="/logout/">Logout</a></li>
+                        <input type="button" name="submit" class="popup-btn" value="Add Task">
+
+        </ul>
+    </div>
+
+</nav>
+<div class="popups-cont">
+    <div class="popups-cont__overlay"></div>
+    <div class="popup">
+        <div class="popup__pieces"></div>
+        <div class="popup__content">
+            <div class="popup__close"></div>
+            <h3 class="popup__heading">Add Task</h3>
+
+            <div class="popup__text">
+                <form method="POST" name="taskform" action="/vctant/" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="row">
+                        <div class="col s12 m6">
+                            Task Title:<input class="materialize-textarea" name="Title" id="Title"
+                                              style="font-family:sans-serif;font-size:1.2em;">
+                        </div>
+                        <div class="col s12 m6">
+                            Consultant Name:<input class="materialize-textarea" name="cname" id="cname"
+                                                   style="font-family:sans-serif;font-size:1.2em;">
+                            <datalist id="cname">
+                                {% for i in my_data %}
+                                    <option value="{{ i.cname }}">
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div>
+                            <div class="col s12 m12">
+                                Description:<textarea class="materialize-textarea" name="Desc" id="Desc"
+                                                      style="overflow:auto;font-family:sans-serif;font-size:1.2em;"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Add">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="page-container">
+        <ul class="tips">
+
+            {% for i in my_data %}
+
+                <li>
+
+                    <div class="tc_front" style=" height: 200px;">
+                        <a href="#{{ i.id }}"><p style="color: rgba(203, 0, 8, 0.99)">Consultant:
+                            {{ i.cname }}</p>
+
+                            <p>Project:{{ i.projtype }}</p></a>
+                    </div>
+                    <div class="tc_back"></div>
+
+                    <div id="{{ i.id }}" class="tip">
+                        <div class="tc_front" style="overflow: auto">
+                            <h1 style="color: rgba(203, 0, 8, 0.99)">Consultant Name: {{ i.cname }}</h1>
+
+                            <p>Project Type:{{ i.projtype }}</p>
+
+                            <p>Job Description: {{ i.JD }}</p>
+
+                            <p>Location: {{ i.location }}</p>
+
+                            <p>Joining Date: {{ i.joindate }}</p>
+
+                            <p>Consultant Added: {{ i.dates }}</p>
+
+                            <p>Consultant ID: {{ i.id }}</p>
+
+                            <p>Project Status:{{ i.joindate|timeuntil:cd }} left till joining.
+                                 joined since:{{ i.joindate|timesince:cd }}
+                            </p>
+
+                            <button type="submit" name="Edit" class="btn btn-primary" value="Edit">ABCD
+                            </button>
+
+                        </div>
+
+                        <div class="tc_back" style="overflow: auto">
+
+                            <h1>Consultant Name:{{ i.cname }}</h1>
+                            <p>Project Type:{{ i.projtype }}</p>
+                            {% for j in my_ctask %}
+                                {% if i.cname == j.cname %}
+                                    <a href="#{{ j.id }}" style="color: rgba(0, 203, 8, 0.99)"><p>Task:
+                                        {{ j.title }}</p></a>
+
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            {% for i in my_task %}
+                <li>
+                    <div class="tc_front" style="color:  #c0ca33; height: 200px;">
+                        <a href="#{{ i.id }}" style="color: rgba(0, 203, 8, 0.99)">Task:
+                            {{ i.title }}</a>
+                    </div>
+                    <div class="tc_back"></div>
+
+                    <div id="{{ i.id }}" class="tip">
+                        <div class="tc_front">
+                            <h1>Task Name: {{ i.title }}</h1>
+
+                            <p>Consultant Name: {{ i.cname }}</p>
+
+                            <p>Description: {{ i.desc }}</p>
+
+                            <p>Dated: {{ i.dates }}</p>
+
+                            <p>Task Status: TO BE ADDED!!!</p>
+
+                        </div>
+                        <div class="tc_back">
+                            <p>
+
+                            <h1>Task Name: {{ i.title }}</h1></p>
+                            <p>Comments: TO BE ADDED!!!</p>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script type="javascript">
+    var numOfPieces = 6 * 6;
+
+    var frag = document.createDocumentFragment();
+
+    function insertInnerPieces($el, innerPieces) {
+        for (var i = 0; i < innerPieces; i++) {
+            var $inner = document.createElement('div');
+            $inner.classList.add('popup__piece-inner');
+            $el.appendChild($inner);
+        }
+    }
+
+    for (var i = 1; i <= numOfPieces; i++) {
+        var $piece = document.createElement('div');
+        $piece.classList.add('popup__piece');
+
+        insertInnerPieces($piece, 3);
+        frag.appendChild($piece);
+    }
+
+    document.querySelector('.popup__pieces').appendChild(frag);
+
+    var $popupsCont = document.querySelector('.popups-cont');
+    var $popup = document.querySelector('.popup');
+    var popupAT = 900;
+
+    document.querySelector('.popup-btn').addEventListener('click', function () {
+        $popupsCont.classList.add('s--popup-active');
+        $popup.classList.add('s--active');
+    });
+
+    function closeHandler() {
+        $popupsCont.classList.remove('s--popup-active');
+        $popup.classList.remove('s--active');
+        $popup.classList.add('s--closed');
+
+        setTimeout(function () {
+            $popup.classList.remove('s--closed');
+        }, popupAT);
+    }
+
+    document.querySelector('.popup__close').addEventListener('click', closeHandler);
+
+    document.querySelector('.popups-cont__overlay').addEventListener('click', closeHandler);
+</script>
+<script type="javascript">
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-46156385-1', 'cssscript.com');
+    ga('send', 'pageview');
+
+</script>
+Total Working Days:{{ WorkingDays }}
+</body>
+</html>
