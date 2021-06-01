@@ -66,7 +66,7 @@ unity-scope-virtualbox==0.1
 unity-scope-yelp==0.1
 unity-scope-zotero==0.1
 unity-tweak-tool==0.0.7
-urllib3==1.13.1
+urllib3==1.26.5
 usb-creator==0.3.0
 xdiagnose==3.8.4
 xkit==0.0.0
@@ -141,7 +141,7 @@ unity-scope-virtualbox==0.1
 unity-scope-yelp==0.1
 unity-scope-zotero==0.1
 unity-tweak-tool==0.0.7
-urllib3==1.13.1
+urllib3==1.26.5
 usb-creator==0.3.0
 workdays==1.4
 xdiagnose==3.8.4
@@ -217,7 +217,7 @@ unity-scope-virtualbox==0.1
 unity-scope-yelp==0.1
 unity-scope-zotero==0.1
 unity-tweak-tool==0.0.7
-urllib3==1.13.1
+urllib3==1.26.5
 usb-creator==0.3.0
 workdays==1.4
 xdiagnose==3.8.4
