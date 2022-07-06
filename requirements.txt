@@ -24,7 +24,7 @@ idna==2.0
 kazam==1.4.5
 language-selector==0.1
 louis==2.6.4
-lxml==3.5.0
+lxml==4.9.1
 oauthlib==1.0.3
 onboard==1.2.0
 oneconf==0.3.9
@@ -99,7 +99,7 @@ idna==2.0
 kazam==1.4.5
 language-selector==0.1
 louis==2.6.4
-lxml==3.5.0
+lxml==4.9.1
 oauthlib==1.0.3
 onboard==1.2.0
 oneconf==0.3.9
@@ -175,7 +175,7 @@ idna==2.0
 kazam==1.4.5
 language-selector==0.1
 louis==2.6.4
-lxml==3.5.0
+lxml==4.9.1
 oauthlib==1.0.3
 onboard==1.2.0
 oneconf==0.3.9
